@@ -14,14 +14,14 @@ Let $\mathcal{F}$ be a graded free module over $\mathcal{R}$ and let $\{e_1 \ldo
 
 Let $\mathcal{M}$ be a graded submodule of $\mathcal{F}$ and let $\{f_1 \ldots f_n\}$ be a minimal set of generators of $\mathcal{M}$, assume $deg(f_j)=d+1$.
 
-Then $f_j = \sum_{i=1}^mL_{ij}e_i$ where $L_{ij}$ is a linear form. The $f_j$ 's are linearly independent over $\mathbb{K}$, we are interested in finding a basis $L_j'$ of all the linear-form-vectors such that : $\sum_{i=1}^nL_{ij}'f_i=0\,$ that is $A\times L_j' = 0$, with :
+Then $f_j = \sum_{i=1}^mL_{ij}e_i$ where $L_{ij}$ is a linear form. The $f_j$ 's are linearly independent over $\mathbb{K}$, we are interested in finding a basis $L_j'$ of all the linear-form-vectors such that : $\sum_{i=1}^nL_{ij}'f_i=0$ that is $A\times L_j' = 0$, with :
 
 ```math
 A = \begin{bmatrix}
 L_{11} & L_{12} & \ldots & L_{1n} \\
 L_{21} & L_{22} & \ldots & L_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
-L_{m1} & L_{m2} & \ldots & L_{mn} \\
+L_{m1} & L_{m2} & \ldots & L_{mn}
 \end{bmatrix}\in \mathcal{R}_1^{m \times n}
 
 \hspace{1cm}
@@ -30,7 +30,7 @@ L_j' = \begin{bmatrix}
 L_{1j}' \\
 L_{2j}' \\
 \vdots \\
-L_{nj}' \\
+L_{nj}'
 \end{bmatrix} \in \mathcal{R}_1^{n \times 1}
 
 \hspace{1cm}
@@ -39,7 +39,7 @@ B = \begin{bmatrix}
 a_{11}^1 \ldots a_{11}^\nu & \ldots & a_{m1}^1 \ldots a_{m1}^\nu \\
 a_{12}^1 \ldots a_{12}^\nu & \ldots & a_{m2}^1 \ldots a_{m2}^\nu \\
 \vdots                     & \ddots & \vdots                     \\
-a_{1n}^1 \ldots a_{1n}^\nu & \ldots & a_{mn}^1 \ldots a_{mn}^\nu \\
+a_{1n}^1 \ldots a_{1n}^\nu & \ldots & a_{mn}^1 \ldots a_{mn}^\nu
 \end{bmatrix} \in \mathbb{K}^{n \times m\nu}
 ```
 
@@ -52,7 +52,7 @@ The procedure is as follows:
 ```math
 M_{red} = \begin{bmatrix}
 Id_n & T \\
-0 & \bar{T} \\
+0 & \bar{T}
 \end{bmatrix}
 ```
 
