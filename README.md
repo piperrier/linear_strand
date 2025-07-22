@@ -24,7 +24,7 @@ L_{21} & L_{22} & \ldots & L_{2n} \\
 L_{m1} & L_{m2} & \ldots & L_{mn}
 \end{bmatrix}\in \mathcal{R}_1^{m \times n}
 
-\hspace{1cm}
+\hspace{0.5cm}
 
 L_j' = \begin{bmatrix}
 L_{1j}' \\
@@ -33,7 +33,7 @@ L_{2j}' \\
 L_{nj}'
 \end{bmatrix} \in \mathcal{R}_1^{n \times 1}
 
-\hspace{1cm}
+\hspace{0.5cm}
 
 B = \begin{bmatrix}
 a_{11}^1 \ldots a_{11}^\nu & \ldots & a_{m1}^1 \ldots a_{m1}^\nu \\
@@ -56,13 +56,13 @@ Id_n & T \\
 \end{bmatrix}
 ```
 
-- Then, compute $Ker(\bar{T})$ and extend it to $Ker(S) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (mutliply by -T and concatenate) and then we can permute columns back to obtain $Ker(M)$
+- Then, compute $Ker(\bar{T})$ and extend it to $Ker(S) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (multiply by -T and concatenate) and then we can permute columns back to obtain $Ker(M)$
 
 - Finally, iterate:
   - $m \leftarrow \\#(f_i)_i$
   - $(e_i)_i \leftarrow (f_i)_i$
   - $n \leftarrow \\#(L'_i)_i$
-  - $(f_j)_j \leftarrow (\sum_{i=1}^nL_{ij}'f_i)_j$
+  - $(f_j)\_j \leftarrow (\sum_{i=1}^nL_{ij}'f_i)_j$
 
 ## Some (minor) modifications of Albano & La Scala conventions
 
