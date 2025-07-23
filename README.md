@@ -10,9 +10,9 @@ We are interested in computing the linear strand of a graded module over a polyn
 
 Let $\mathcal{R}=\mathbb{K}[x_1 \ldots x_{\nu}]$ be a graded polynomial ring.
 
-Let $\mathcal{F}$ be a graded free module over $\mathcal{R}$ and let $\{e_1 \ldots e_m\}$ be a free basis of $\mathcal{F}$, assume $deg(e_i)=d$.
+Let $\mathcal{F}$ be a graded free module over $\mathcal{R}$ and let $(e_1, \dots, e_m)$ be a free basis of $\mathcal{F}$, assume $\mbox{deg}(e_i)=d$.
 
-Let $\mathcal{M}$ be a graded submodule of $\mathcal{F}$ and let $\{f_1 \ldots f_n\}$ be a minimal set of generators of $\mathcal{M}$, assume $deg(f_j)=d+1$.
+Let $\mathcal{M}$ be a graded submodule of $\mathcal{F}$ and let $\{f_1 \ldots f_n\}$ be a minimal set of generators of $\mathcal{M}$, assume $\mbox{deg}(f_j)=d+1$.
 
 Then $f_j = \sum_{i=1}^mL_{ij}e_i$ where $L_{ij}$ is a linear form. The $f_j$ 's are linearly independent over $\mathbb{K}$, we are interested in finding a basis $L_j'$ of all the linear-form-vectors such that : $\sum_{i=1}^nL_{ij}'f_i=0$ that is $A\times L_j' = 0$, with :
 
