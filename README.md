@@ -6,9 +6,9 @@ This is a toy implementation of the algorithm described in: [Albano & La Scala's
 
 ## Description
 
-We are interested in computing the linear strand of a graded modul over a polynomial ring until a given $r$.
+We are interested in computing the linear strand of a graded module over a polynomial ring until a given $r$.
 
-Let $\mathcal{R}=\mathbb{K}[x_1 \ldots x_{\nu}]$ be a graded polynomial.
+Let $\mathcal{R}=\mathbb{K}[x_1 \ldots x_{\nu}]$ be a graded polynomial ring.
 
 Let $\mathcal{F}$ be a graded free module over $\mathcal{R}$ and let $\{e_1 \ldots e_m\}$ be a free basis of $\mathcal{F}$, assume $deg(e_i)=d$.
 
