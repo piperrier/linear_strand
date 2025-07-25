@@ -1,3 +1,6 @@
+from sage.matrix.constructor import matrix
+from sage.matrix.special import zero_matrix
+
 # =====================
 def carre_matrice(M):
     k = M.nrows()
@@ -18,10 +21,10 @@ def ideal2(G,R):
     
     N = carre_matrice(G).kernel()
     b12 = N.dimension()
-    
+
     I = []
     if b12 >= 1:
-        k2 = k*(k+1)/2
+        k2 = k*(k+1)//2
         M2 = [x[i]*x[j] for i in range(0,k) for j in range(i,k)]
         for i in range(b12):
             b = 0
