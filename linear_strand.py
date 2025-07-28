@@ -1,7 +1,7 @@
-from mac_matrix import *
+from macaulay_matrix import *
 from order import *
 from code_ideal import *
-from expmat import *
+from expanded_matrix import *
 
 from sage.matrix.constructor import matrix
 from sage.rings.finite_rings.finite_field_constructor import GF
@@ -11,7 +11,6 @@ import time
 
 
 def extend(C, T, new_col_order):
-    # TODO new col order
     base = matrix([vector(list(-T*elt) + list(elt)) for elt in C])
     base = kosz_col_perm_inv(base, new_col_order)
     return base
@@ -62,7 +61,7 @@ class LinearStrand:
 
 class CodeStrand:
     """
-    linear strand of a code, syzygy distringuisher
+    Linear strand of a code, syzygy distinguisher
     """
 
 
@@ -76,7 +75,10 @@ class CodeStrand:
         pass
 
 
-    def compute(self, r):
+    def compute(self, r = None):
+        if r == None :
+            r = self.nu
+        
         R = PolynomialRing(self.field, self.nu, 'x', order = 'lex')
         strand = [0]
     

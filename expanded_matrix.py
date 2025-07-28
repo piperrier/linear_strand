@@ -1,4 +1,4 @@
-from mac_matrix import *
+from macaulay_matrix import *
 from order import *
 
 class ExpandedMatrix:
@@ -32,12 +32,15 @@ class ExpandedMatrix:
             r.append(row_index)
             k.append(k_i)
         t = [self.nu*ri-(ri*(ri-1))//2 for ri in r]
-        spacing = [[self.nu-x for x in range(ri)] for ri in r]
-        
+        spacing = [[self.nu-x for x in range(ri)] for ri in r if ri!=0]
+        t_prime = [x for x in t if x!=0]
+        subdiv = [sum(t_prime[:(i+1)]) for i in range(len(t_prime))]
+
         self.r = r
         self.k = k
         self.t = t
         self.spacing = spacing
+        self.subdiv = subdiv
         self.n_sol_col = [(ri*(ri-1))//2 for ri in self.r]
 
 
@@ -54,6 +57,7 @@ class ExpandedMatrix:
         print(f"k={self.k}")
         print(f"t={self.t}")
         print(f"spacing={self.spacing}")
+        print(f"subdiv={self.subdiv}")
         print(f"n_sol_col={self.n_sol_col}")
 
 
@@ -69,14 +73,14 @@ class ExpandedMatrix:
         #col order
         new_col_order = col_order(self.r, self.k, self.nu, self.n)
         S_col_perm = kosz_col_perm(S_row_perm, new_col_order)
-        S_col_perm = t_subdivide(S_col_perm, self.t)
+        S_col_perm = t_subdivide(S_col_perm, self.subdiv)
 
         #ideal elim
-        S_ie = block_ideal_elim(S_col_perm, self.r, self.k, self.spacing)
+        S_ie = block_ideal_elim(S_col_perm, self.k, self.spacing, self.subdiv)
     
         #block_forward
-        S_bf = block_forward_substitution(S_ie)
+        S_bf = block_forward_substitution(S_ie, self.subdiv)
 
         # T,TT
-        T, TT = block_T_TT(S_bf)
+        T, TT = block_T_TT(S_bf, self.subdiv)
         return (T, TT, new_col_order)
