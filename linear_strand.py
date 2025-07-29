@@ -81,11 +81,11 @@ class CodeStrand:
         
         R = PolynomialRing(self.field, self.nu, 'x', order = 'lex')
         strand = [0]
-    
-        i2 = ideal2(self.G, R)
-        strand.append(len(i2))
-    
-        M23 = macaulay23(i2, R)
+           
+        N = square_matrix(self.G).kernel().matrix()
+        strand.append(N.nrows())
+
+        M23 = macaulay23(N,self.nu)
         i3 = M23.right_kernel()
 
         B_gen = i3.matrix()
@@ -154,3 +154,4 @@ def hamming_7_4():
     
 if __name__ == '__main__':
     gaulay_11_6()
+

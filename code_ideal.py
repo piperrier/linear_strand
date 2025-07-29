@@ -1,5 +1,6 @@
 from sage.matrix.constructor import matrix
 from sage.matrix.special import zero_matrix
+from sage.functions.other import binomial
 
 
 def square_matrix(M):
@@ -8,42 +9,51 @@ def square_matrix(M):
     return matrix(L)
 
 
-def ideal2(G,R):
-    k = G.nrows()
-    x = R.gens()
-    
-    N = square_matrix(G).kernel()
-    b12 = N.dimension()
+def index_to_mon_deg2(index,k):
+    '''associe à un indice le monôme de degré 2 à k variables associé dans l'ordre lex'''
+    mon = []
+    x=0
+    i = -1
+    while x <= index :
+        i+=1
+        x+=k-i
 
-    I = []
-    if b12 >= 1:
-        k2 = k*(k+1)//2
-        M2 = [x[i]*x[j] for i in range(0,k) for j in range(i,k)]
-        for i in range(b12):
-            b = 0
-            for j in range(k2):
-                b+=N.basis()[i][j]*M2[j]
-            I.append(b)
-    
-    return I
+    mon.append(i)
+    x -= (k-i)
+    mon.append(index-x+i)
+    return mon
 
 
-def macaulay23(I, R):
-    F = R.base_ring()
+def mon_deg3_to_index(mon,k):
+    '''associe à un monôme de degré 3 l'indice associé dans la liste'''
+    index = 0
 
-    x = R.gens()
-    nu = len(x)
+    i0 = mon[0]
+    index += binomial(k+2,3) - binomial(k+1-(i0-1),3)
 
-    B3 = [x[i1]*x[i2]*x[i3] for i1 in range(nu) for i2 in range(i1,nu) for i3 in range(i2,nu)]
-    n = len(I)
+    i1 = mon[1]
+    index += (k-i0)*(k-i0+1)//2 - (k-i1+1)*(k-i1)//2
 
-    M = zero_matrix(R,len(B3),nu*n)
+    i2 = mon[2]
+    index += i2 - i1
 
-    for i in range(n):
-        cf = I[i].coefficients()
-        mf = I[i].monomials()
-        for j in range(nu):
-            for t in range(len(mf)):
-                M[B3.index(mf[t]*x[j]), i * nu + j] = cf[t]
-    
+    return index
+
+
+def macaulay23(N,k):
+    b12 = N.nrows()
+
+    M = zero_matrix(N.base_ring(), binomial(k+2,3)  ,k*b12)
+
+    for i in range(b12):
+        d = N.row(i).dict()
+        for j in range(k):
+        #À i est associé un monôme de degré 2 x_l*x_p, on lui associe x_l*x_p*x_j et on construit la colonne associée
+            for index_mon2,coef in d.items():
+                mon = index_to_mon_deg2(index_mon2,k)
+                mon.append(j)
+                mon.sort()
+
+                M[mon_deg3_to_index(mon,k),i*k+j] = coef
+
     return M
