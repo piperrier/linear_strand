@@ -9,8 +9,10 @@ def square_matrix(M):
     return matrix(L)
 
 
-def index_to_mon_deg2(index,k):
-    '''associe à un indice le monôme de degré 2 à k variables associé dans l'ordre lex'''
+def index_to_mon_deg2(index, k):
+    '''
+    associe à un indice le monôme de degré 2 à k variables associé dans l'ordre lex
+    '''
     mon = []
     x=0
     i = -1
@@ -24,8 +26,10 @@ def index_to_mon_deg2(index,k):
     return mon
 
 
-def mon_deg3_to_index(mon,k):
-    '''associe à un monôme de degré 3 l'indice associé dans la liste'''
+def mon_deg3_to_index(mon, k):
+    '''
+    associe à un monôme de degré 3 l'indice associé dans la liste
+    '''
     index = 0
 
     i0 = mon[0]
@@ -40,7 +44,7 @@ def mon_deg3_to_index(mon,k):
     return index
 
 
-def macaulay23(N,k):
+def macaulay23(N, k):
     b12 = N.nrows()
 
     M = zero_matrix(N.base_ring(), binomial(k+2,3)  ,k*b12)
