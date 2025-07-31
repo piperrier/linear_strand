@@ -64,7 +64,7 @@ Id_n & T \\
 \end{bmatrix}
 ```
 
-- Then, compute $Ker(\bar{T})$ and extend it to $Ker(M_{red}) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (multiply by -T and concatenate) and then we can permute columns back to obtain $Ker(M)$
+- Then, compute $Ker(\bar{T})$ and extend it to $Ker(M_{red}) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (multiply by -T and concatenate) and then permute columns back to obtain $Ker(M)$
 
 - Finally, iterate:
   - $m \leftarrow \\#(f_i)_i$
@@ -77,8 +77,8 @@ Id_n & T \\
 Notations are almost the same as the one from Albano & La Scala:
 
 - We switched to the lexicographical ordering as it seems more natural and we didn't see any reason to keep the order Albano & La Scala introduced :  
-   $(h, k) < (h' , k' )$ iff $(k > k')\lor\left((k = k') \land (h < h')\right)$ becomes $(h, k) < (h' , k' )$ iff $(h < h')\lor\left((h = h') \land (k < k')\right)$
-- As a consequence, we adapt the writing of B, now we read B from left to right, and we demand B to be Left Row Echelon Form.
+  $(h, k) < (h' , k' )$ iff $(k > k')\lor\left((k = k') \land (h < h')\right)$ becomes $(h, k) < (h' , k' )$ iff $(h < h')\lor\left((h = h') \land (k < k')\right)$
+- As a consequence, the notation of matrix B is adjusted. Now, B is read from left to right and is required to be in Left Row Echelon Form.
 
 ## Installation
 
