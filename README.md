@@ -76,7 +76,7 @@ Id_n & T \\
 
 Notations are almost the same as the one from Albano & La Scala:
 
-- We switched to the lexicographical ordering as it seems more natural and we didn't see any reason to keep the order Albano & La Scala introduced :  
+- The order was switched to the lexicographical ordering as it seems more natural and we didn't see any reason to keep the order Albano & La Scala introduced :  
   $(h, k) < (h' , k' )$ iff $(k > k')\lor\left((k = k') \land (h < h')\right)$ becomes $(h, k) < (h' , k' )$ iff $(h < h')\lor\left((h = h') \land (k < k')\right)$
 - As a consequence, the notation of matrix B is adjusted. Now, B is read from left to right and is required to be in Left Row Echelon Form.
 
@@ -107,19 +107,19 @@ In a `sage` interpreter, run :
 
 ### `rs_10_5.ipynb`
 
-We compute the linear strand of the (10, 5) Reed-Solomon code.  
+This example compute the linear strand of the (10, 5) Reed-Solomon code.  
 The matrix A is the M23 macaulay matrix, the first matrix we iterate on to get further syzygies.  
-In this example, we **construct the whole matrix** associated to the system and apply the procedure described in Albano & La Scala step by step.
+In this example, **the entire matrix** is constructed before applying the procedure described in Albano & La Scala step by step.
 
 ### `syzygies.sage`
 
 This is Nicolas's implementation.  
-We **only construct the *solution columns*** of the system, transvections we can deduce from reading the matrix B are "done" (in fact we are not even doing them) directly when constructing the matrix of the system. This version can be converted in a sparse one quiet easily.
+**Only the *solution columns*** of the system are constructed, transvections that can be deduced from reading the matrix B are "done" directly when constructing the matrix of the system. This version could be converted in a sparse/multithreaded one quiet easily.
 
 ### `code_ideal.py`, `expanded_matrix.py`, `linear_strand.py`, `macaulay_matrix.py`, `order.py`, `projects.sage`, `utils.py`
 
 This is Pierre's implementation.  
-Currently it contains a dense version that **construct the whole system** and it should be adapted to construct only the *solution columns* and exploit sparsness.
+Currently it contains a dense version that **construct the entire matrix** and it should be adapted to construct only the *solution columns* and exploit sparsness.
 
 - `code_ideal.py`: compute the square of the code and Macaulay23 matrix.
 - `expanded_matrix.py`: compute the expanded matrix and run `kosz_syz_mats` method.
@@ -128,6 +128,11 @@ Currently it contains a dense version that **construct the whole system** and it
 - `order.py`: monomial orders, rows and columns permutation.
 - `projects.py`: examples of computations.
 - `utils.py`: usefull stuff.
+
+It is currently quite slow and should only be considered as a toy/demonstrator. Nevertheless, we believe it could be drastically improved:
+
+- The `block_ideal_elim` method currently takes 1/4 of the running time. However, the transvections can be determined by analyzing B (not yet implemented), so the matrix after these transvections can be built straightforwardly, avoiding the call to the naive `block_ideal_elim` method.
+- The `block_forward_substitution` method currently takes about 1/4 to 1/3 of the running time. Since this involves only linear algebra and block operations, it could be parallelized/multithreaded.
 
 ## Potential optimizations
 
