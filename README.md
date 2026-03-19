@@ -1,6 +1,6 @@
-# Linear strand computation
+# Linear Strand Computation
 
-This repository contains an experimental implementation of the syzygy distinguisher presented in <https://eprint.iacr.org/2024/1193> (see <https://github.com/randriam/syzygies> for legacy magma code).
+This repository contains an experimental implementation of the syzygy distinguisher presented in [eprint.iacr.org/2024/1193](https://eprint.iacr.org/2024/1193) (see [github.com/randriam/syzygies](https://github.com/randriam/syzygies) for legacy magma code).
 
 This is a toy implementation of the algorithm described in: [Albano & La Scala's paper](https://link.springer.com/article/10.1007/s002000000043)
 
@@ -67,9 +67,9 @@ Id_n & T \\
 - Then, compute $Ker(\bar{T})$ and extend it to $Ker(M_{red}) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (multiply by -T and concatenate) and then permute columns back to obtain $Ker(M)$
 
 - Finally, iterate:
-  - $m \leftarrow \\#(f_i)_i$
+  - $m \leftarrow \#(f_i)_i$
   - $(e_i)_i \leftarrow (f_i)_i$
-  - $n \leftarrow \\#(L'_i)_i$
+  - $n \leftarrow \#(L'_i)_i$
   - $(f_j)\_j \leftarrow (\sum_{i=1}^nL_{ij}'f_i)_j$
 
 ## Some (minor) modifications of Albano & La Scala conventions
@@ -103,22 +103,35 @@ In a `sage` interpreter, run :
   print(dist)
 ```
 
-## Organisation & files
+## Project Structure
 
-### `rs_10_5.ipynb`
+```
+linear_strand/
+├── prototype_1/              # Nicolas's implementation
+│   └── syzygies.sage         # Sparse implementation (solution columns only)
+├── prototype_2/              # Pierre's implementation
+│   ├── code_ideal.py         # Code square and Macaulay23 matrix
+│   ├── expanded_matrix.py    # Expanded matrix and kosz_syz_mats
+│   ├── linear_strand.py      # Main syzygy distinguisher
+│   ├── macaulay_matrix.py    # Matrix constructions and operations
+│   ├── order.py              # Monomial orders and permutations
+│   ├── projects.sage         # Example computations
+│   ├── utils.py              # Utility functions
+│   └── rs_10_5.ipynb          # Reed-Solomon (10,5) example notebook
+├── .gitignore
+└── README.md
+```
 
-This example compute the linear strand of the (10, 5) Reed-Solomon code.  
-The matrix A is the M23 macaulay matrix, the first matrix we iterate on to get further syzygies.  
-In this example, **the entire matrix** is constructed before applying the procedure described in Albano & La Scala step by step.
+## Implementation Details
 
-### `syzygies.sage`
+### `prototype_1/syzygies.sage`
 
-This is Nicolas's implementation.  
+This is Nicolas's implementation.
 **Only the *solution columns*** of the system are constructed, transvections that can be deduced from reading the matrix B are "done" directly when constructing the matrix of the system. This version could be converted in a sparse/multithreaded one quiet easily.
 
-### `code_ideal.py`, `expanded_matrix.py`, `linear_strand.py`, `macaulay_matrix.py`, `order.py`, `projects.sage`, `utils.py`
+### `prototype_2/`
 
-This is Pierre's implementation.  
+This is Pierre's implementation.
 Currently it contains a dense version that **construct the entire matrix** and it should be adapted to construct only the *solution columns* and exploit sparsness.
 
 - `code_ideal.py`: compute the square of the code and Macaulay23 matrix.
@@ -126,8 +139,8 @@ Currently it contains a dense version that **construct the entire matrix** and i
 - `linear_strand.py`: Toy syzygy distinguisher, with Albano & La Scala method.
 - `macaulay_matrix.py`: matrix constructions, operations and reduction.
 - `order.py`: monomial orders, rows and columns permutation.
-- `projects.py`: examples of computations.
-- `utils.py`: usefull stuff.
+- `projects.sage`: examples of computations.
+- `utils.py`: useful stuff.
 
 It is currently quite slow and should only be considered as a toy/demonstrator. Nevertheless, we believe it could be drastically improved:
 
