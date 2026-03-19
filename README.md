@@ -67,9 +67,9 @@ Id_n & T \\
 - Then, compute $Ker(\bar{T})$ and extend it to $Ker(M_{red}) = Vec \left< (-T\times x | x), x \in Ker(\bar{T}) \right>$ (multiply by -T and concatenate) and then permute columns back to obtain $Ker(M)$
 
 - Finally, iterate:
-  - $m \leftarrow \#(f_i)_i$
+  - $m \leftarrow \\#(f_i)_i$
   - $(e_i)_i \leftarrow (f_i)_i$
-  - $n \leftarrow \#(L'_i)_i$
+  - $n \leftarrow \\#(L'_i)_i$
   - $(f_j)\_j \leftarrow (\sum_{i=1}^nL_{ij}'f_i)_j$
 
 ## Some (minor) modifications of Albano & La Scala conventions
